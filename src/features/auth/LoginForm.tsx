@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { Formiz, useForm } from '@formiz/core';
 import { useQueryClient } from '@tanstack/react-query';
-import Link from 'next/link';
+import { Link } from '@tanstack/router';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { FieldInput } from '@/components/FieldInput';

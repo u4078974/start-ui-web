@@ -1,18 +1,19 @@
 'use client';
 
-import { ReactNode } from 'react';
-
 import { ColorModeScript } from '@chakra-ui/react';
+import { RouterProvider } from '@tanstack/router';
 
 import { Providers } from '@/app/Providers';
 import { Viewport } from '@/components/Viewport';
 import { LoginModalInterceptor } from '@/features/auth/LoginModalInterceptor';
+import { router } from '@/features/router/router';
 import { EnvDevHint } from '@/layout/EnvDevHint';
 import i18n from '@/lib/i18n/config';
 import { AVAILABLE_LANGUAGES } from '@/lib/i18n/constants';
 import { theme } from '@/theme/theme';
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+// { children }: { children: ReactNode } // As props to use the Next App Router
+export default function RootLayout() {
   return (
     <html
       lang={i18n.language}
@@ -65,7 +66,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* https://github.com/chakra-ui/chakra-ui/issues/7040 */}
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <Providers>
-          <Viewport>{children}</Viewport>
+          <Viewport>
+            <RouterProvider router={router} />
+            {/* To use Next App Router, uncomment the following line */}
+            {/* {children} */}
+          </Viewport>
           <LoginModalInterceptor />
           <EnvDevHint />
         </Providers>
