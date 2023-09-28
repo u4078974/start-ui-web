@@ -16,6 +16,7 @@
     "logout": "تسجيل خروج"
   },
   "subscription": {
-    "upgradeToPro": "التطور للاحترافية"
+    "upgradeToPro": "التطور للاحترافية",
+    "proPlan": "خطةالمحترفين"
   }
 }

@@ -16,6 +16,7 @@ const zUser = () =>
     activated: z.boolean(),
     role: zUserRole(),
     language: z.string(),
+    plan: z.string(),
   });
 
 export const usersRouter = createTRPCRouter({

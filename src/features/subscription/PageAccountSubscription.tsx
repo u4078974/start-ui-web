@@ -16,6 +16,9 @@ export default function PageAccountSubscription() {
   const { t } = useTranslation(['subscription']);
   const router = useRouter();
   const toastError = useToastError();
+  const account = trpc.account.get.useQuery();
+
+  const isProPlan = account?.data?.plan === 'PRO_PLAN';
 
   const createCheckoutSession = trpc.stripe.createCheckoutSession.useMutation({
     onSuccess: async (data) => {
@@ -35,7 +38,7 @@ export default function PageAccountSubscription() {
   });
 
   const handleUpgradeToPro = () => {
-    createCheckoutSession.mutate({});
+    createCheckoutSession.mutate();
   };
 
   return (
@@ -58,7 +61,7 @@ export default function PageAccountSubscription() {
               €0
             </Text>
             <Button size="sm" disabled mt="2">
-              Your current plan
+              {!isProPlan ? 'Your current plan' : 'Downgrade to free'}
             </Button>
             <Text mt="4" fontSize="sm" fontWeight="medium" color="gray.600">
               Free development and figma starter
@@ -114,12 +117,12 @@ export default function PageAccountSubscription() {
               </Text>
             </Text>
             <Button
-              variant="@primary"
               size="sm"
               mt="2"
+              color={isProPlan ? 'error.600' : 'white'}
               onClick={handleUpgradeToPro}
             >
-              Upgrade to pro
+              {isProPlan ? 'Cancel my subscription' : 'Upgrade to pro'}
             </Button>
             <Text mt="4" fontSize="sm" fontWeight="medium" color="gray.600">
               Free development and figma starter

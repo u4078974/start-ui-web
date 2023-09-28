@@ -13,8 +13,7 @@ import { ZodError } from 'zod';
 
 import { getServerAuthSession } from '@/server/auth';
 import { db } from '@/server/db';
-
-import { stripe } from '../stripe/client';
+import { stripe } from '@/server/stripe/client';
 
 /**
  * 1. CONTEXT

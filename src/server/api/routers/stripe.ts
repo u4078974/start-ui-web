@@ -11,7 +11,7 @@ export const stripeRouter = createTRPCRouter({
         tags: ['stripe'],
       },
     })
-    .input(z.object({}))
+    .input(z.void())
     .output(
       z.object({
         checkoutUrl: z.string().nullable(),
@@ -20,10 +20,7 @@ export const stripeRouter = createTRPCRouter({
     .mutation(async ({ ctx }) => {
       const { stripe, user } = ctx;
 
-      const baseUrl =
-        process.env.NODE_ENV === 'development'
-          ? 'http://localhost:3000'
-          : `https://${process.env.NEXT_PUBLIC_BASE_URL}`;
+      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
       const checkoutSession = await stripe.checkout.sessions.create({
         client_reference_id: user?.id,
@@ -35,7 +32,7 @@ export const stripeRouter = createTRPCRouter({
             quantity: 1,
           },
         ],
-        success_url: `${baseUrl}/account/subscription?checkoutSuccess=true&session_id={CHECKOUT_SESSION_ID}`,
+        success_url: `${baseUrl}/account/subscription`,
         cancel_url: `${baseUrl}/account/subscription`,
         subscription_data: {
           metadata: {
@@ -50,4 +47,5 @@ export const stripeRouter = createTRPCRouter({
 
       return { checkoutUrl: checkoutSession.url };
     }),
+  cancelSubscription: protectedProcedure.mutation(() => {}),
 });

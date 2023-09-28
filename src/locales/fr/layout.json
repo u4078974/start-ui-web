@@ -16,6 +16,7 @@
     "logout": "Déconnexion"
   },
   "subscription": {
-    "upgradeToPro": "Upgrade to pro"
+    "upgradeToPro": "Upgrade to pro",
+    "proPlan": "Pro plan"
   }
 }

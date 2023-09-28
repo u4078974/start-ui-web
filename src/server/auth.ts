@@ -35,6 +35,7 @@ export const getServerAuthSession = async () => {
       language: true,
       activated: true,
       emailVerified: true,
+      plan: true,
     },
   });
 };
