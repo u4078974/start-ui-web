@@ -2,7 +2,8 @@
   "nav": {
     "profile": "الملف الشخصي",
     "password": "كلمة المرور",
-    "myAccount": "حسابي"
+    "myAccount": "حسابي",
+    "subscription": "الاشتراك"
   },
   "profile": {
     "title": "الملف الشخصي",

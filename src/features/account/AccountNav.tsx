@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
-import { LuLock, LuUser } from 'react-icons/lu';
+import { LuGem, LuLock, LuUser } from 'react-icons/lu';
 
 import { Nav, NavGroup, NavItem } from '@/components/Nav';
 
@@ -29,6 +29,14 @@ export const AccountNav = () => {
           icon={LuLock}
         >
           {t('account:nav.password')}
+        </NavItem>
+        <NavItem
+          as={Link}
+          href="/account/subscription"
+          isActive={isActive('/account/subscription')}
+          icon={LuGem}
+        >
+          {t('account:nav.subscription')}
         </NavItem>
       </NavGroup>
     </Nav>

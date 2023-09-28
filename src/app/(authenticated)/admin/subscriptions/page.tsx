@@ -1,7 +1,7 @@
 'use client';
 
-import PageSubscriptions from '@/features/subscriptions/PageSubscriptions';
+import PageAdminSubscriptions from '@/features/subscriptions/PageAdminSubscriptions';
 
 export default function Page() {
-  return <PageSubscriptions />;
+  return <PageAdminSubscriptions />;
 }

@@ -7,6 +7,7 @@ import dashboard from './dashboard.json';
 import emails from './emails.json';
 import layout from './layout.json';
 import repositories from './repositories.json';
+import subscription from './subscription.json';
 import subscriptions from './subscriptions.json';
 import users from './users.json';
 
@@ -20,6 +21,7 @@ export default {
   emails,
   layout,
   repositories,
-  users,
+  subscription,
   subscriptions,
+  users,
 } as const;

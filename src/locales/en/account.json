@@ -2,7 +2,8 @@
   "nav": {
     "profile": "Profile",
     "password": "Password",
-    "myAccount": "My Account"
+    "myAccount": "My Account",
+    "subscription": "Subscription"
   },
   "profile": {
     "title": "Profile",

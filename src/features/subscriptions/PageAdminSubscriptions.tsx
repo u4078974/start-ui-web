@@ -7,7 +7,7 @@ import { Page, PageContent } from '@/components/Page';
 
 import { AdminNav } from '../admin/AdminNav';
 
-export default function PageSubscriptions() {
+export default function PageAdminSubscriptions() {
   const { t } = useTranslation(['subscriptions']);
   return (
     <Page containerSize="xl" nav={<AdminNav />}>
