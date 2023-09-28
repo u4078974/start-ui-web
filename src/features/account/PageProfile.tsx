@@ -65,7 +65,7 @@ export default function PageProfile() {
   });
 
   return (
-    <Page nav={<AccountNav />}>
+    <Page containerSize="lg" nav={<AccountNav />}>
       <PageContent>
         <Heading size="md" mb="4">
           {t('account:profile.title')}

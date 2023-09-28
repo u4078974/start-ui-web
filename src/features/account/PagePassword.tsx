@@ -50,7 +50,7 @@ export default function PagePassword() {
   });
 
   return (
-    <Page nav={<AccountNav />}>
+    <Page containerSize="lg" nav={<AccountNav />}>
       <PageContent>
         <Heading size="md" mb="4">
           {t('account:password.title')}
