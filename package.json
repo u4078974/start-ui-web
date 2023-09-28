@@ -73,6 +73,7 @@
     "react-select": "5.7.5",
     "react-use-measure": "2.1.1",
     "sharp": "0.32.6",
+    "stripe": "13.7.0",
     "superjson": "1.13.1",
     "swagger-ui-react": "4.19.0",
     "trpc-openapi": "1.2.0",

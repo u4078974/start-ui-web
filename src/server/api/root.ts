@@ -4,6 +4,8 @@ import { repositoriesRouter } from '@/server/api/routers/repositories';
 import { usersRouter } from '@/server/api/routers/users';
 import { createTRPCRouter } from '@/server/api/trpc';
 
+import { stripeRouter } from './routers/stripe';
+
 /**
  * This is the primary router for your server.
  *
@@ -14,6 +16,7 @@ export const appRouter = createTRPCRouter({
   account: accountRouter,
   repositories: repositoriesRouter,
   users: usersRouter,
+  stripe: stripeRouter,
 });
 
 // export type definition of API

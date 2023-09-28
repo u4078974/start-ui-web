@@ -18,6 +18,8 @@ const envSchema = z.object({
 
   EMAIL_SERVER: z.string().url(),
   EMAIL_FROM: z.string(),
+
+  NEXT_PUBLIC_STRIPE_API_KEY: z.string(),
 });
 
 /**

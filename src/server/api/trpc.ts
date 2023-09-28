@@ -14,6 +14,8 @@ import { ZodError } from 'zod';
 import { getServerAuthSession } from '@/server/auth';
 import { db } from '@/server/db';
 
+import { stripe } from '../stripe/client';
+
 /**
  * 1. CONTEXT
  *
@@ -33,6 +35,7 @@ export const createTRPCContext = async () => {
   const user = await getServerAuthSession();
 
   return {
+    stripe,
     user,
     db,
   };
