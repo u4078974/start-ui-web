@@ -2,6 +2,7 @@
   "nav": {
     "administration": "Administration",
     "apiDocumentation": "API Documentation",
+    "subscriptions": "Subscriptions",
     "users": "Users"
   }
 }

@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
-import { LuBookOpen, LuUsers } from 'react-icons/lu';
+import { LuBookOpen, LuGem, LuUsers } from 'react-icons/lu';
 
 import { Nav, NavGroup, NavItem } from '@/components/Nav';
 
@@ -21,6 +21,14 @@ export const AdminNav = () => {
           icon={LuUsers}
         >
           {t('admin:nav.users')}
+        </NavItem>
+        <NavItem
+          as={Link}
+          href="/admin/subscriptions"
+          isActive={isActive('/admin/subscriptions')}
+          icon={LuGem}
+        >
+          {t('admin:nav.subscriptions')}
         </NavItem>
         <NavItem
           as={Link}
