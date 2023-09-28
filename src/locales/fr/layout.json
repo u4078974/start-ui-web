@@ -14,5 +14,8 @@
     "switchColorModeLight": "Passer en mode clair",
     "myAccount": "Mon compte",
     "logout": "Déconnexion"
+  },
+  "subscription": {
+    "upgradeToPro": "Upgrade to pro"
   }
 }

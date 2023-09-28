@@ -2,6 +2,7 @@ import React from 'react';
 
 import {
   Avatar,
+  Badge,
   Box,
   Flex,
   Menu,
@@ -12,6 +13,7 @@ import {
   MenuList,
   Spinner,
   Text,
+  useBreakpointValue,
   useClipboard,
   useColorMode,
 } from '@chakra-ui/react';
@@ -110,9 +112,27 @@ export const AccountMenu = ({ ...rest }) => {
   const account = trpc.account.get.useQuery();
   const router = useRouter();
 
+  const isMobile = useBreakpointValue({ base: true, md: false });
+
   return (
     <Box color="gray.800" _dark={{ color: 'white' }}>
       <Menu placement="bottom-end" {...rest}>
+        {!isMobile && (
+          <Badge
+            as="button"
+            size="lg"
+            color="brand.100"
+            mr="4"
+            px="2"
+            borderRadius="md"
+            textTransform="uppercase"
+            onClick={() => router.push('/account/subscription')}
+          >
+            <Text color="brand.700" fontWeight="medium">
+              {t('layout:subscription.upgradeToPro')}
+            </Text>
+          </Badge>
+        )}
         <MenuButton borderRadius="full" _focusVisible={{ shadow: 'outline' }}>
           <Avatar size="sm" icon={<></>} name={account.data?.email ?? ''}>
             {account.isLoading && <Spinner size="xs" />}

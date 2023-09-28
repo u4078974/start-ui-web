@@ -14,5 +14,8 @@
     "switchColorModeLight": "Badilisha kwa hali ya mwanga",
     "myAccount": "Akauti yangu",
     "logout": "Ondoka"
+  },
+  "subscription": {
+    "upgradeToPro": "Upgrade to pro"
   }
 }

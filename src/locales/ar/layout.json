@@ -14,5 +14,8 @@
     "switchColorModeLight": "التحويل إلى وضع الإضاءة ",
     "myAccount": "حسابي",
     "logout": "تسجيل خروج"
+  },
+  "subscription": {
+    "upgradeToPro": "التطور للاحترافية"
   }
 }

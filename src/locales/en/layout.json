@@ -14,5 +14,8 @@
     "switchColorModeLight": "Switch to Light Mode",
     "myAccount": "My Account",
     "logout": "Logout"
+  },
+  "subscription": {
+    "upgradeToPro": "Upgrade to pro"
   }
 }
