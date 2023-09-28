@@ -20,6 +20,7 @@ const envSchema = z.object({
   EMAIL_FROM: z.string(),
 
   NEXT_PUBLIC_STRIPE_API_KEY: z.string(),
+  NEXT_PUBLIC_STRIPE_PRICE_ID: z.string(),
 });
 
 /**

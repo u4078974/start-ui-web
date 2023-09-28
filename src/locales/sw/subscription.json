@@ -1,3 +1,10 @@
 {
-  "title": "Subscription"
+  "title": "Subscription",
+  "stripe": {
+    "feedbacks": {
+      "createCheckoutSessionError": {
+        "title": "Error while trying to access to the Stripe page"
+      }
+    }
+  }
 }

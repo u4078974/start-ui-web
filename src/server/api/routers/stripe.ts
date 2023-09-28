@@ -31,12 +31,12 @@ export const stripeRouter = createTRPCRouter({
         mode: 'subscription',
         line_items: [
           {
-            price: 'price_1NuzxtIE7wNEIWeT5R3AuJqg',
+            price: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID,
             quantity: 1,
           },
         ],
-        success_url: `${baseUrl}/dashboard?checkoutSuccess=true`,
-        cancel_url: `${baseUrl}/dashboard`,
+        success_url: `${baseUrl}/account/subscription?checkoutSuccess=true&session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${baseUrl}/account/subscription`,
         subscription_data: {
           metadata: {
             userId: user?.id,

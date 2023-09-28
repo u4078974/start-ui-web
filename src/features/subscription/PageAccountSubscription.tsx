@@ -1,16 +1,43 @@
 import React from 'react';
 
 import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react';
+import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 import { LuCheck, LuX } from 'react-icons/lu';
 
 import { Icon } from '@/components/Icons';
 import { Page, PageContent } from '@/components/Page';
+import { useToastError } from '@/components/Toast';
+import { trpc } from '@/lib/trpc/client';
 
 import { AccountNav } from '../account/AccountNav';
 
 export default function PageAccountSubscription() {
   const { t } = useTranslation(['subscription']);
+  const router = useRouter();
+  const toastError = useToastError();
+
+  const createCheckoutSession = trpc.stripe.createCheckoutSession.useMutation({
+    onSuccess: async (data) => {
+      if (!data.checkoutUrl) {
+        return;
+      }
+
+      router.push(data.checkoutUrl);
+    },
+    onError: () => {
+      toastError({
+        title: t(
+          'subscription:stripe.feedbacks.createCheckoutSessionError.title'
+        ),
+      });
+    },
+  });
+
+  const handleUpgradeToPro = () => {
+    createCheckoutSession.mutate({});
+  };
+
   return (
     <Page containerSize="lg" nav={<AccountNav />}>
       <PageContent>
@@ -86,7 +113,12 @@ export default function PageAccountSubscription() {
                 / month
               </Text>
             </Text>
-            <Button variant="@primary" size="sm" mt="2">
+            <Button
+              variant="@primary"
+              size="sm"
+              mt="2"
+              onClick={handleUpgradeToPro}
+            >
               Upgrade to pro
             </Button>
             <Text mt="4" fontSize="sm" fontWeight="medium" color="gray.600">
