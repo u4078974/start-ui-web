@@ -16,7 +16,9 @@ const zUser = () =>
     activated: z.boolean(),
     role: zUserRole(),
     language: z.string(),
-    plan: z.string(),
+    stripeCustomerId: z.string().nullish(),
+    stripeSubscriptionId: z.string().nullish(),
+    stripeSubscriptionStatus: z.string().nullish(),
   });
 
 export const usersRouter = createTRPCRouter({

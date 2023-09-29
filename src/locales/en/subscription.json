@@ -2,8 +2,18 @@
   "title": "Subscription",
   "stripe": {
     "feedbacks": {
-      "createCheckoutSessionError": {
-        "title": "Error while trying to access to the Stripe page"
+      "createCheckoutSession": {
+        "error": {
+          "title": "Error while trying to access to the Stripe page"
+        }
+      },
+      "cancelSubscription": {
+        "success": {
+          "title": "Subscription canceled"
+        },
+        "error": {
+          "title": "An error occured while canceling subscription"
+        }
       }
     }
   }

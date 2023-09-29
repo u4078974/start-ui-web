@@ -15,7 +15,9 @@ export const accountRouter = createTRPCRouter({
         email: true,
         role: true,
         language: true,
-        plan: true,
+        stripeCustomerId: true,
+        stripeSubscriptionId: true,
+        stripeSubscriptionStatus: true,
       },
     });
 

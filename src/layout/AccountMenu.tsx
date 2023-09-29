@@ -129,7 +129,7 @@ export const AccountMenu = ({ ...rest }) => {
             onClick={() => router.push('/account/subscription')}
           >
             <Text color="brand.700" fontWeight="medium">
-              {account.data?.plan === 'PRO_PLAN'
+              {account.data?.stripeSubscriptionStatus === 'active'
                 ? t('layout:subscription.proPlan')
                 : t('layout:subscription.upgradeToPro')}
             </Text>

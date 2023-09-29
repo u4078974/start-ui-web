@@ -21,6 +21,7 @@ const envSchema = z.object({
 
   NEXT_PUBLIC_STRIPE_API_KEY: z.string(),
   NEXT_PUBLIC_STRIPE_PRICE_ID: z.string(),
+  NEXT_PUBLIC_STRIPE_WEBHOOK_SECRET: z.string(),
 });
 
 /**

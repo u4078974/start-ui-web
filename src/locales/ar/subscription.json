@@ -2,8 +2,18 @@
   "title": "Subscription",
   "stripe": {
     "feedbacks": {
-      "createCheckoutSessionError": {
-        "title": "الوصول إلى صفحة الشريط"
+      "createCheckoutSession": {
+        "error": {
+          "title": "الوصول إلى صفحة الشريط"
+        }
+      },
+      "cancelSubscription": {
+        "success": {
+          "title": "تم إلغاء الاشتراك"
+        },
+        "error": {
+          "title": "الوصول إلى صفحة الشريط"
+        }
       }
     }
   }

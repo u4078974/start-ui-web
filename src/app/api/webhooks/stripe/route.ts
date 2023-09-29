@@ -1,21 +1,32 @@
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
+import Stripe from 'stripe';
 
 import { db } from '@/server/db';
 import { stripe } from '@/server/stripe/client';
 
-interface EventDataObject {
-  metadata?: {
-    userId?: string;
-  };
-}
+const getIdOrCreateCustomerIdForUser = async (event: Stripe.Event) => {
+  const subscription = event.data.object as Stripe.Subscription;
+  const userId = subscription.metadata.userId;
 
+  console.log({ subscription });
+
+  await db.user.update({
+    where: { id: userId },
+    data: {
+      stripeSubscriptionId: subscription.id,
+      stripeSubscriptionStatus: subscription.cancel_at_period_end
+        ? 'inative'
+        : subscription.status,
+    },
+  });
+};
 export const POST = async (req: Request) => {
   let event = null;
   const signature = headers().get('stripe-signature');
 
   if (!signature) {
-    return new Response(undefined, { status: 401 });
+    return new Response(undefined, { status: 400 });
   }
 
   try {
@@ -24,27 +35,25 @@ export const POST = async (req: Request) => {
     event = stripe.webhooks.constructEvent(
       payload,
       signature,
-      'whsec_32ac5dc26fcfab2df456ef8eed94df761e3418b0aa227ffb3ded37b6421a1300'
+      process.env.NEXT_PUBLIC_STRIPE_WEBHOOK_SECRET
     );
   } catch (err) {
-    return new Response(undefined, { status: 402 });
+    return new Response(undefined, { status: 400 });
   }
 
-  if (event.type !== 'customer.subscription.updated') {
-    return new Response(undefined, { status: 404 });
+  // Handle the event
+  switch (event.type) {
+    case 'customer.subscription.created':
+      await getIdOrCreateCustomerIdForUser(event);
+      break;
+    case 'customer.subscription.updated':
+      await getIdOrCreateCustomerIdForUser(event);
+      break;
+    case 'invoice.payment_failed':
+      console.log('PAYMENT FAILED');
+      break;
+    default:
   }
-
-  const eventDataObject: EventDataObject = event.data.object;
-  const userId = eventDataObject?.metadata?.userId;
-
-  if (!userId) {
-    return new Response(undefined, { status: 404 });
-  }
-
-  await db.user.update({
-    where: { id: userId },
-    data: { plan: 'PRO_PLAN' },
-  });
 
   return NextResponse.json({});
 };

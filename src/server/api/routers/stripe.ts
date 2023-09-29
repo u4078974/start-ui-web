@@ -1,3 +1,4 @@
+import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 
 import { createTRPCRouter, protectedProcedure } from '@/server/api/trpc';
@@ -18,14 +19,36 @@ export const stripeRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx }) => {
-      const { stripe, user } = ctx;
-
       const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
-      const checkoutSession = await stripe.checkout.sessions.create({
-        client_reference_id: user?.id,
+      let customerId = ctx.user?.stripeCustomerId;
+
+      if (!customerId) {
+        const customer = await ctx.stripe.customers.create({
+          email: ctx.user.email ?? undefined,
+          name: ctx.user.name ?? undefined,
+          metadata: {
+            userId: ctx.user.id,
+          },
+        });
+
+        const updatedUser = await ctx.db.user.update({
+          where: {
+            id: ctx.user.id,
+          },
+          data: {
+            stripeCustomerId: customer.id,
+          },
+        });
+
+        customerId = updatedUser.id;
+      }
+
+      const checkoutSession = await ctx.stripe.checkout.sessions.create({
+        client_reference_id: ctx.user?.id,
         payment_method_types: ['card'],
         mode: 'subscription',
+        customer: customerId,
         line_items: [
           {
             price: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID,
@@ -36,16 +59,41 @@ export const stripeRouter = createTRPCRouter({
         cancel_url: `${baseUrl}/account/subscription`,
         subscription_data: {
           metadata: {
-            userId: user?.id,
+            userId: ctx.user?.id,
           },
         },
       });
 
       if (!checkoutSession) {
-        throw new Error('Could not create checkout session');
+        throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR' });
       }
 
       return { checkoutUrl: checkoutSession.url };
     }),
-  cancelSubscription: protectedProcedure.mutation(() => {}),
+  cancelSubscription: protectedProcedure
+    .meta({
+      openapi: {
+        method: 'POST',
+        path: '/stripe/cancelSubscription',
+        tags: ['stripe'],
+      },
+    })
+    .input(z.void())
+    .output(z.void())
+    .mutation(async ({ ctx }) => {
+      if (!ctx.user.stripeSubscriptionId) {
+        throw new TRPCError({ code: 'NOT_FOUND' });
+      }
+
+      const subscription = await ctx.stripe.subscriptions.update(
+        ctx.user.stripeSubscriptionId,
+        {
+          cancel_at_period_end: true,
+        }
+      );
+
+      if (!subscription.cancel_at_period_end) {
+        throw new TRPCError({ code: 'BAD_REQUEST' });
+      }
+    }),
 });

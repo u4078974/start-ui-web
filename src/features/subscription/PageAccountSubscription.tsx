@@ -7,7 +7,7 @@ import { LuCheck, LuX } from 'react-icons/lu';
 
 import { Icon } from '@/components/Icons';
 import { Page, PageContent } from '@/components/Page';
-import { useToastError } from '@/components/Toast';
+import { useToastError, useToastSuccess } from '@/components/Toast';
 import { trpc } from '@/lib/trpc/client';
 
 import { AccountNav } from '../account/AccountNav';
@@ -15,10 +15,9 @@ import { AccountNav } from '../account/AccountNav';
 export default function PageAccountSubscription() {
   const { t } = useTranslation(['subscription']);
   const router = useRouter();
+  const toastSuccess = useToastSuccess();
   const toastError = useToastError();
   const account = trpc.account.get.useQuery();
-
-  const isProPlan = account?.data?.plan === 'PRO_PLAN';
 
   const createCheckoutSession = trpc.stripe.createCheckoutSession.useMutation({
     onSuccess: async (data) => {
@@ -31,21 +30,42 @@ export default function PageAccountSubscription() {
     onError: () => {
       toastError({
         title: t(
-          'subscription:stripe.feedbacks.createCheckoutSessionError.title'
+          'subscription:stripe.feedbacks.createCheckoutSession.error.title'
         ),
       });
     },
   });
 
-  const handleUpgradeToPro = () => {
-    createCheckoutSession.mutate();
+  const cancelSubscription = trpc.stripe.cancelSubscription.useMutation({
+    onSuccess: async () => {
+      toastSuccess({
+        title: t(
+          'subscription:stripe.feedbacks.cancelSubscription.success.title'
+        ),
+      });
+    },
+    onError: () => {
+      toastError({
+        title: t(
+          'subscription:stripe.feedbacks.cancelSubscription.error.title'
+        ),
+      });
+    },
+  });
+
+  const handleUpgradeToProOrCancel = () => {
+    if (account.data?.stripeSubscriptionStatus !== 'active') {
+      createCheckoutSession.mutate();
+    } else {
+      cancelSubscription.mutate();
+    }
   };
 
   return (
     <Page containerSize="lg" nav={<AccountNav />}>
       <PageContent>
         <Heading size="md">{t('subscription:title')}</Heading>
-        <Flex flexDirection="row" gap="6">
+        <Flex flexDirection={{ base: 'column', md: 'row' }} gap="6">
           <Box
             minW="250"
             borderRadius="md"
@@ -60,8 +80,10 @@ export default function PageAccountSubscription() {
             <Text mt="6" fontSize="3xl" fontWeight="bold">
               €0
             </Text>
-            <Button size="sm" disabled mt="2">
-              {!isProPlan ? 'Your current plan' : 'Downgrade to free'}
+            <Button size="sm" disabled mt="2" isLoading={account.isFetching}>
+              {account.data?.stripeSubscriptionStatus !== 'active'
+                ? 'Your current plan'
+                : 'Downgrade to free'}
             </Button>
             <Text mt="4" fontSize="sm" fontWeight="medium" color="gray.600">
               Free development and figma starter
@@ -117,12 +139,23 @@ export default function PageAccountSubscription() {
               </Text>
             </Text>
             <Button
+              variant={
+                account.data?.stripeSubscriptionStatus !== 'active'
+                  ? '@primary'
+                  : 'solid'
+              }
               size="sm"
               mt="2"
-              color={isProPlan ? 'error.600' : 'white'}
-              onClick={handleUpgradeToPro}
+              color={
+                account.data?.stripeSubscriptionStatus === 'active'
+                  ? 'error.600'
+                  : 'white'
+              }
+              onClick={handleUpgradeToProOrCancel}
             >
-              {isProPlan ? 'Cancel my subscription' : 'Upgrade to pro'}
+              {account.data?.stripeSubscriptionStatus === 'active'
+                ? 'Cancel my subscription'
+                : 'Upgrade to pro'}
             </Button>
             <Text mt="4" fontSize="sm" fontWeight="medium" color="gray.600">
               Free development and figma starter

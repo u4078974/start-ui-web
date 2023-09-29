@@ -23,7 +23,9 @@ model User {
   activated     Boolean  @default(false)
   role          String   @default("USER")
   language      String   @default("en")
-  plan          String   @default("FREE_PLAN")
+  stripeCustomerId String?
+  stripeSubscriptionId String?
+  stripeSubscriptionStatus String?
 }
 
 model VerificationToken {

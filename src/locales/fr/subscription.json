@@ -2,8 +2,18 @@
   "title": "Subscription",
   "stripe": {
     "feedbacks": {
-      "createCheckoutSessionError": {
-        "title": "Error lors de l'accès à la page Stripe"
+      "createCheckoutSession": {
+        "error": {
+          "title": "Une erreur est survenu lors de l'accès à la page Stripe"
+        }
+      },
+      "cancelSubscription": {
+        "success": {
+          "title": "La souscription a bien été annulée"
+        },
+        "error": {
+          "title": "Une erreur est survenu pendant l'annulation de la souscription"
+        }
       }
     }
   }
