@@ -7,12 +7,14 @@ import {
   AlertTitle,
   Box,
   Button,
+  Flex,
   Heading,
   Text,
   Wrap,
 } from '@chakra-ui/react';
+import Link from 'next/link';
 import { Trans, useTranslation } from 'react-i18next';
-import { LuAlertCircle, LuBookOpen, LuGithub } from 'react-icons/lu';
+import { LuAlertCircle, LuBookOpen, LuGithub, LuX } from 'react-icons/lu';
 
 import { Icon } from '@/components/Icons';
 import { Page, PageContent } from '@/components/Page';
@@ -21,6 +23,29 @@ export default function PageDashboard() {
   const { t } = useTranslation(['dashboard']);
   return (
     <Page>
+      <Flex
+        p="2"
+        flexDirection="row"
+        justifyContent="space-between"
+        bg="brand.050"
+        boxShadow="md"
+      >
+        <Flex alignItems="center">
+          <Text ml="2" fontSize="md" fontWeight="medium" color="gray.700">
+            Do you want more interesting and useful features and product?
+            Upgrade to pro!
+          </Text>
+          <Button
+            as={Link}
+            href="/account/subscription"
+            ml="4"
+            variant="@primary"
+          >
+            See plans
+          </Button>
+        </Flex>
+        <Icon fontSize="2xl" color="gray.500" icon={LuX} />
+      </Flex>
       <PageContent>
         <Heading size="md" mb="4">
           {t('dashboard:title')}

@@ -9,14 +9,12 @@ const getIdOrCreateCustomerIdForUser = async (event: Stripe.Event) => {
   const subscription = event.data.object as Stripe.Subscription;
   const userId = subscription.metadata.userId;
 
-  console.log({ subscription });
-
   await db.user.update({
     where: { id: userId },
     data: {
       stripeSubscriptionId: subscription.id,
       stripeSubscriptionStatus: subscription.cancel_at_period_end
-        ? 'inative'
+        ? 'inactive'
         : subscription.status,
     },
   });
@@ -41,7 +39,6 @@ export const POST = async (req: Request) => {
     return new Response(undefined, { status: 400 });
   }
 
-  // Handle the event
   switch (event.type) {
     case 'customer.subscription.created':
       await getIdOrCreateCustomerIdForUser(event);

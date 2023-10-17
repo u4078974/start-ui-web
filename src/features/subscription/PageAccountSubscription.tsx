@@ -19,6 +19,8 @@ export default function PageAccountSubscription() {
   const toastError = useToastError();
   const account = trpc.account.get.useQuery();
 
+  const ctx = trpc.useContext();
+
   const createCheckoutSession = trpc.stripe.createCheckoutSession.useMutation({
     onSuccess: async (data) => {
       if (!data.checkoutUrl) {
@@ -38,6 +40,8 @@ export default function PageAccountSubscription() {
 
   const cancelSubscription = trpc.stripe.cancelSubscription.useMutation({
     onSuccess: async () => {
+      ctx.account.get.invalidate();
+
       toastSuccess({
         title: t(
           'subscription:stripe.feedbacks.cancelSubscription.success.title'
@@ -80,7 +84,12 @@ export default function PageAccountSubscription() {
             <Text mt="6" fontSize="3xl" fontWeight="bold">
               €0
             </Text>
-            <Button size="sm" disabled mt="2" isLoading={account.isFetching}>
+            <Button
+              size="sm"
+              disabled={account.data?.stripeSubscriptionStatus !== 'active'}
+              mt="2"
+              onClick={handleUpgradeToProOrCancel}
+            >
               {account.data?.stripeSubscriptionStatus !== 'active'
                 ? 'Your current plan'
                 : 'Downgrade to free'}
