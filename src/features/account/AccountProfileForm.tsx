@@ -18,6 +18,7 @@ import {
   FormFieldsAccountProfile,
   zFormFieldsAccountProfile,
 } from '@/features/account/schemas';
+import { useUploadFile } from '@/hooks/useUploadFile';
 import {
   AVAILABLE_LANGUAGES,
   DEFAULT_LANGUAGE_KEY,
@@ -33,6 +34,8 @@ export const AccountProfileForm = () => {
 
   const toastSuccess = useToastSuccess();
   const toastError = useToastError();
+
+  const uploadFile = useUploadFile();
 
   const updateAccount = trpc.account.update.useMutation({
     onSuccess: async () => {
