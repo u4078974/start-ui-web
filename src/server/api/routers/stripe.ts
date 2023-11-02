@@ -32,7 +32,7 @@ export const stripeRouter = createTRPCRouter({
           },
         });
 
-        const updatedUser = await ctx.db.user.update({
+        await ctx.db.user.update({
           where: {
             id: ctx.user.id,
           },
@@ -41,7 +41,7 @@ export const stripeRouter = createTRPCRouter({
           },
         });
 
-        customerId = updatedUser.id;
+        customerId = customer.id;
       }
 
       const checkoutSession = await ctx.stripe.checkout.sessions.create({
