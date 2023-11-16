@@ -18,34 +18,39 @@ import { LuAlertCircle, LuBookOpen, LuGithub, LuX } from 'react-icons/lu';
 
 import { Icon } from '@/components/Icons';
 import { Page, PageContent } from '@/components/Page';
+import { trpc } from '@/lib/trpc/client';
 
 export default function PageDashboard() {
   const { t } = useTranslation(['dashboard']);
+  const account = trpc.account.get.useQuery();
+
   return (
     <Page>
-      <Flex
-        p="2"
-        flexDirection="row"
-        justifyContent="space-between"
-        bg="brand.050"
-        boxShadow="md"
-      >
-        <Flex alignItems="center">
-          <Text ml="2" fontSize="md" fontWeight="medium" color="gray.700">
-            Do you want more interesting and useful features and product?
-            Upgrade to pro!
-          </Text>
-          <Button
-            as={Link}
-            href="/account/subscription"
-            ml="4"
-            variant="@primary"
-          >
-            See plans
-          </Button>
+      {account.data?.stripeSubscriptionStatus !== 'active' && (
+        <Flex
+          p="2"
+          flexDirection="row"
+          justifyContent="space-between"
+          bg="brand.050"
+          boxShadow="md"
+        >
+          <Flex alignItems="center">
+            <Text ml="2" fontSize="md" fontWeight="medium" color="gray.700">
+              Do you want more interesting and useful features and product?
+              Upgrade to pro!
+            </Text>
+            <Button
+              as={Link}
+              href="/account/subscription"
+              ml="4"
+              variant="@primary"
+            >
+              See plans
+            </Button>
+          </Flex>
+          <Icon fontSize="2xl" color="gray.500" icon={LuX} />
         </Flex>
-        <Icon fontSize="2xl" color="gray.500" icon={LuX} />
-      </Flex>
+      )}
       <PageContent>
         <Heading size="md" mb="4">
           {t('dashboard:title')}
