@@ -31,11 +31,10 @@ export default function PageDashboard() {
           p="2"
           flexDirection="row"
           justifyContent="space-between"
-          bg="brand.050"
           boxShadow="md"
         >
           <Flex alignItems="center">
-            <Text ml="2" fontSize="md" fontWeight="medium" color="gray.700">
+            <Text ml="2" fontSize="md" fontWeight="medium">
               Do you want more interesting and useful features and product?
               Upgrade to pro!
             </Text>
@@ -48,7 +47,7 @@ export default function PageDashboard() {
               See plans
             </Button>
           </Flex>
-          <Icon fontSize="2xl" color="gray.500" icon={LuX} />
+          <Icon fontSize="2xl" icon={LuX} />
         </Flex>
       )}
       <PageContent>

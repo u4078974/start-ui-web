@@ -121,14 +121,14 @@ export const AccountMenu = ({ ...rest }) => {
           <Badge
             as="button"
             size="lg"
-            color="brand.100"
             mr="4"
+            colorScheme="brand"
             px="2"
             borderRadius="md"
             textTransform="uppercase"
             onClick={() => router.push('/account/subscription')}
           >
-            <Text color="brand.700" fontWeight="medium">
+            <Text fontWeight="medium">
               {account.data?.stripeSubscriptionStatus === 'active'
                 ? t('layout:subscription.proPlan')
                 : t('layout:subscription.upgradeToPro')}

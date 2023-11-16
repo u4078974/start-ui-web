@@ -80,21 +80,16 @@ export default function PageAccountSubscription() {
               mt="4"
               boxShadow="sm"
               bg="white"
+              _dark={{ bg: 'gray.900' }}
             >
-              <Text fontSize="sm" fontWeight="bold" color="gray.500">
+              <Text fontSize="sm" fontWeight="bold">
                 Free plan
               </Text>
               <Text mt="6" fontSize="3xl" fontWeight="bold">
                 €0
               </Text>
               {account.data?.stripeSubscriptionStatus !== 'active' ? (
-                <Tag
-                  size="lg"
-                  p="1"
-                  mt="2"
-                  variant="solid"
-                  colorScheme="blackAlpha"
-                >
+                <Tag size="lg" px="3" mt="2" variant="solid">
                   Your current plan
                 </Tag>
               ) : (
@@ -108,36 +103,72 @@ export default function PageAccountSubscription() {
                 </Button>
               )}
 
-              <Text mt="4" fontSize="sm" fontWeight="medium" color="gray.600">
+              <Text
+                mt="4"
+                fontSize="sm"
+                fontWeight="medium"
+                color="gray.600"
+                _dark={{ color: 'gray.300' }}
+              >
                 Free development and figma starter
               </Text>
               <Flex>
                 <Icon icon={LuCheck} mr={2} fontSize="2xl" color="brand.500" />
-                <Text mt="3" fontSize="sm" fontWeight="normal" color="gray.600">
+                <Text
+                  mt="3"
+                  fontSize="sm"
+                  fontWeight="normal"
+                  color="gray.600"
+                  _dark={{ color: 'gray.300' }}
+                >
                   50+ Components
                 </Text>
               </Flex>
               <Flex>
                 <Icon icon={LuCheck} mr={2} fontSize="2xl" color="brand.500" />
-                <Text mt="3" fontSize="sm" fontWeight="normal" color="gray.600">
+                <Text
+                  mt="3"
+                  fontSize="sm"
+                  fontWeight="normal"
+                  color="gray.600"
+                  _dark={{ color: 'gray.300' }}
+                >
                   8 Developed Web and Native screens
                 </Text>
               </Flex>
               <Flex>
                 <Icon icon={LuCheck} mr={2} fontSize="2xl" color="brand.500" />
-                <Text mt="3" fontSize="sm" fontWeight="normal" color="gray.600">
+                <Text
+                  mt="3"
+                  fontSize="sm"
+                  fontWeight="normal"
+                  color="gray.600"
+                  _dark={{ color: 'gray.300' }}
+                >
                   No copyright
                 </Text>
               </Flex>
               <Flex>
                 <Icon icon={LuX} mr={2} fontSize="2xl" color="gray.400" />
-                <Text mt="3" fontSize="sm" fontWeight="normal" color="gray.600">
+                <Text
+                  mt="3"
+                  fontSize="sm"
+                  fontWeight="normal"
+                  color="gray.600"
+                  _dark={{ color: 'gray.300' }}
+                >
                   Premium support
                 </Text>
               </Flex>
               <Flex>
                 <Icon icon={LuX} mr={2} fontSize="2xl" color="gray.400" />
-                <Text mt="3" fontSize="sm" fontWeight="normal" color="gray.600">
+                <Text
+                  mt="3"
+                  fontSize="sm"
+                  fontWeight="normal"
+                  color="gray.600"
+                  _dark={{ color: 'gray.300' }}
+                >
                   Full custom development
                 </Text>
               </Flex>
@@ -149,6 +180,7 @@ export default function PageAccountSubscription() {
               mt="4"
               boxShadow="sm"
               bg="white"
+              _dark={{ bg: 'gray.900' }}
               border="2px solid"
               borderColor="brand.600"
             >
@@ -157,7 +189,13 @@ export default function PageAccountSubscription() {
               </Text>
               <Text mt="6" fontSize="3xl" fontWeight="bold">
                 €9,99
-                <Text as="span" ml="1" fontSize="sm" color="gray.600">
+                <Text
+                  as="span"
+                  ml="1"
+                  fontSize="sm"
+                  color="gray.600"
+                  _dark={{ color: 'gray.300' }}
+                >
                   / month
                 </Text>
               </Text>
@@ -180,36 +218,72 @@ export default function PageAccountSubscription() {
                   ? 'Cancel my subscription'
                   : 'Upgrade to pro'}
               </Button>
-              <Text mt="4" fontSize="sm" fontWeight="medium" color="gray.600">
+              <Text
+                mt="4"
+                fontSize="sm"
+                fontWeight="medium"
+                color="gray.600"
+                _dark={{ color: 'gray.300' }}
+              >
                 Free development and figma starter
               </Text>
               <Flex>
                 <Icon icon={LuCheck} mr={2} fontSize="2xl" color="brand.500" />
-                <Text mt="3" fontSize="sm" fontWeight="normal" color="gray.600">
+                <Text
+                  mt="3"
+                  fontSize="sm"
+                  fontWeight="normal"
+                  color="gray.600"
+                  _dark={{ color: 'gray.300' }}
+                >
                   100+ Components
                 </Text>
               </Flex>
               <Flex>
                 <Icon icon={LuCheck} mr={2} fontSize="2xl" color="brand.500" />
-                <Text mt="3" fontSize="sm" fontWeight="normal" color="gray.600">
+                <Text
+                  mt="3"
+                  fontSize="sm"
+                  fontWeight="normal"
+                  color="gray.600"
+                  _dark={{ color: 'gray.300' }}
+                >
                   16 Developed Web and Native screens
                 </Text>
               </Flex>
               <Flex>
                 <Icon icon={LuCheck} mr={2} fontSize="2xl" color="brand.500" />
-                <Text mt="3" fontSize="sm" fontWeight="normal" color="gray.600">
+                <Text
+                  mt="3"
+                  fontSize="sm"
+                  fontWeight="normal"
+                  color="gray.600"
+                  _dark={{ color: 'gray.300' }}
+                >
                   No copyright
                 </Text>
               </Flex>
               <Flex>
                 <Icon icon={LuCheck} mr={2} fontSize="2xl" color="brand.500" />
-                <Text mt="3" fontSize="sm" fontWeight="normal" color="gray.600">
+                <Text
+                  mt="3"
+                  fontSize="sm"
+                  fontWeight="normal"
+                  color="gray.600"
+                  _dark={{ color: 'gray.300' }}
+                >
                   Premium support
                 </Text>
               </Flex>
               <Flex>
                 <Icon icon={LuX} mr={2} fontSize="2xl" color="gray.400" />
-                <Text mt="3" fontSize="sm" fontWeight="normal" color="gray.600">
+                <Text
+                  mt="3"
+                  fontSize="sm"
+                  fontWeight="normal"
+                  color="gray.600"
+                  _dark={{ color: 'gray.300' }}
+                >
                   Full custom development
                 </Text>
               </Flex>
@@ -221,52 +295,83 @@ export default function PageAccountSubscription() {
               mt="4"
               boxShadow="sm"
               bg="white"
+              _dark={{ bg: 'gray.900' }}
             >
-              <Text fontSize="sm" fontWeight="bold" color="gray.500">
+              <Text fontSize="sm" fontWeight="bold">
                 Enterprise
               </Text>
               <Text mt="6" fontSize="3xl" fontWeight="bold">
                 Custom
               </Text>
-              <Tag
-                size="lg"
-                p="1"
-                mt="2"
-                variant="solid"
-                colorScheme="blackAlpha"
-              >
+              <Tag size="lg" px="3" mt="2" variant="solid">
                 Contact us
               </Tag>
-              <Text mt="4" fontSize="sm" fontWeight="medium" color="gray.600">
+              <Text
+                mt="4"
+                fontSize="sm"
+                fontWeight="medium"
+                color="gray.600"
+                _dark={{ color: 'gray.300' }}
+              >
                 Custom developed app
               </Text>
               <Flex>
                 <Icon icon={LuCheck} mr={2} fontSize="2xl" color="brand.500" />
-                <Text mt="3" fontSize="sm" fontWeight="normal" color="gray.600">
+                <Text
+                  mt="3"
+                  fontSize="sm"
+                  fontWeight="normal"
+                  color="gray.600"
+                  _dark={{ color: 'gray.300' }}
+                >
                   As much components as needed
                 </Text>
               </Flex>
               <Flex>
                 <Icon icon={LuCheck} mr={2} fontSize="2xl" color="brand.500" />
-                <Text mt="3" fontSize="sm" fontWeight="normal" color="gray.600">
+                <Text
+                  mt="3"
+                  fontSize="sm"
+                  fontWeight="normal"
+                  color="gray.600"
+                  _dark={{ color: 'gray.300' }}
+                >
                   As much screens as needed
                 </Text>
               </Flex>
               <Flex>
                 <Icon icon={LuCheck} mr={2} fontSize="2xl" color="brand.500" />
-                <Text mt="3" fontSize="sm" fontWeight="normal" color="gray.600">
+                <Text
+                  mt="3"
+                  fontSize="sm"
+                  fontWeight="normal"
+                  color="gray.600"
+                  _dark={{ color: 'gray.300' }}
+                >
                   No copyright
                 </Text>
               </Flex>
               <Flex>
                 <Icon icon={LuCheck} mr={2} fontSize="2xl" color="brand.500" />
-                <Text mt="3" fontSize="sm" fontWeight="normal" color="gray.600">
+                <Text
+                  mt="3"
+                  fontSize="sm"
+                  fontWeight="normal"
+                  color="gray.600"
+                  _dark={{ color: 'gray.300' }}
+                >
                   Premium support
                 </Text>
               </Flex>
               <Flex>
                 <Icon icon={LuCheck} mr={2} fontSize="2xl" color="brand.500" />
-                <Text mt="3" fontSize="sm" fontWeight="normal" color="gray.600">
+                <Text
+                  mt="3"
+                  fontSize="sm"
+                  fontWeight="normal"
+                  color="gray.600"
+                  _dark={{ color: 'gray.300' }}
+                >
                   Full custom development
                 </Text>
               </Flex>
