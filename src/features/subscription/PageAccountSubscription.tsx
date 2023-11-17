@@ -20,7 +20,7 @@ export default function PageAccountSubscription() {
   const toastError = useToastError();
   const account = trpc.account.get.useQuery();
 
-  const ctx = trpc.useContext();
+  const trpcContext = trpc.useContext();
 
   const createCheckoutSession = trpc.stripe.createCheckoutSession.useMutation({
     onSuccess: async (data) => {
@@ -41,8 +41,14 @@ export default function PageAccountSubscription() {
 
   const cancelSubscription = trpc.stripe.cancelSubscription.useMutation({
     onSuccess: async () => {
-      await ctx.account.invalidate();
-      await ctx.account.get.refetch();
+      await trpcContext.account.invalidate();
+      const currentUser = trpcContext.account.get.getData();
+      if (currentUser) {
+        trpcContext.account.get.setData(undefined, {
+          ...currentUser,
+          stripeSubscriptionStatus: 'inactive',
+        });
+      }
 
       toastSuccess({
         title: t(

@@ -95,5 +95,7 @@ export const stripeRouter = createTRPCRouter({
       if (!subscription.cancel_at_period_end) {
         throw new TRPCError({ code: 'BAD_REQUEST' });
       }
+
+      return undefined;
     }),
 });
