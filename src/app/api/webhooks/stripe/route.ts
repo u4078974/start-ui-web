@@ -1,4 +1,3 @@
-import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
@@ -21,7 +20,7 @@ const getIdOrCreateCustomerIdForUser = async (event: Stripe.Event) => {
 };
 export const POST = async (req: Request) => {
   let event = null;
-  const signature = headers().get('stripe-signature');
+  const signature = req.headers.get('stripe-signature');
 
   if (!signature) {
     return new Response(undefined, { status: 400 });
