@@ -18,6 +18,7 @@ import {
   FormFieldsAccountProfile,
   zFormFieldsAccountProfile,
 } from '@/features/account/schemas';
+import { useAvatarUpload } from '@/features/account/useAvatarUpload';
 import { useUploadFile } from '@/hooks/useUploadFile';
 import {
   AVAILABLE_LANGUAGES,
@@ -35,7 +36,7 @@ export const AccountProfileForm = () => {
   const toastSuccess = useToastSuccess();
   const toastError = useToastError();
 
-  const uploadFile = useUploadFile();
+  const uploadFile = useAvatarUpload();
 
   const updateAccount = trpc.account.update.useMutation({
     onSuccess: async () => {
