@@ -69,8 +69,8 @@ export const FieldDayPicker = <
                 !dayPickerProps?.disabled
                   ? []
                   : Array.isArray(dayPickerProps.disabled)
-                  ? dayPickerProps.disabled
-                  : [dayPickerProps.disabled]
+                    ? dayPickerProps.disabled
+                    : [dayPickerProps.disabled]
               )
             : true,
         message: invalidMessage,
@@ -138,8 +138,8 @@ export const FieldDayPicker = <
     !dayPickerProps?.disabled
       ? [getDisabledFutureOrPastDaysMatcher()]
       : Array.isArray(dayPickerProps.disabled)
-      ? [...dayPickerProps.disabled, getDisabledFutureOrPastDaysMatcher()]
-      : [dayPickerProps.disabled, getDisabledFutureOrPastDaysMatcher()]
+        ? [...dayPickerProps.disabled, getDisabledFutureOrPastDaysMatcher()]
+        : [dayPickerProps.disabled, getDisabledFutureOrPastDaysMatcher()]
   ).filter(Boolean); // We cut out nullable values because the disabled prop do not accept them
 
   const content = (
