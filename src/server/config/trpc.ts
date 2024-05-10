@@ -112,7 +112,7 @@ const loggerMiddleware = t.middleware(async (opts) => {
   };
 
   logger.debug(
-    { ...meta, input: opts.getRawInput() },
+    { ...meta, input: await opts.getRawInput() },
     `${(await opts.getRawInput()) ? '📨 With' : '📥 No'} input`
   );
 
