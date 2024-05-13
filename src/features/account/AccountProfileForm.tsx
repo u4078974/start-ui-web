@@ -33,6 +33,7 @@ export const AccountProfileForm = () => {
   });
 
   const accountAvatar = useAvatarFetch(account.data?.image || '');
+
   const toastSuccess = useToastSuccess();
   const toastError = useToastError();
 
