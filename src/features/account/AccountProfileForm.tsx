@@ -67,7 +67,7 @@ export const AccountProfileForm = () => {
     image,
     ...values
   }) => {
-    let fileUrl = '';
+    let fileUrl = account.data?.image;
     try {
       if (image?.file) {
         const uploadResponse = await uploadFile.mutateAsync(image?.file);
