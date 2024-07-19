@@ -64,6 +64,7 @@ export const FieldSelect = <
               // we propagate the `selectProps`
               onChange={(option) => onChange(option?.value)}
               {...props.selectProps}
+              className={`floating-label ${props.selectProps?.className ?? ''} ${field.value ? 'enable-floating-label' : ''}`}
               {...fieldProps}
             />
             <FormFieldError />

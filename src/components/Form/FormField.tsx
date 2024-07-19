@@ -43,6 +43,7 @@ const FormFieldComponent = (
         flexDirection="column"
         id={id}
         gap={1}
+        variant="floating"
         {...props.formControlProps}
       >
         {props.children}

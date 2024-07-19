@@ -3,6 +3,7 @@ export { badgeTheme as Badge } from './badge';
 export { buttonTheme as Button } from './button';
 export { cardTheme as Card } from './card';
 export { checkboxTheme as Checkbox } from './checkbox';
+export { formTheme as Form } from './form';
 export { inputTheme as Input } from './input';
 export { linkTheme as Link } from './link';
 export { modalTheme as Modal } from './modal';

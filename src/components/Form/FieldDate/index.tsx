@@ -51,6 +51,7 @@ export const FieldDate = <
               size: props.size,
               autoFocus: props.autoFocus,
               ...props.dayPickerInputProps,
+              className: `floating-label ${props.dayPickerInputProps?.className ?? ''} ${field.value ? 'enable-floating-label' : ''}`,
             }}
             {...props.dayPickerProps}
             {...field}

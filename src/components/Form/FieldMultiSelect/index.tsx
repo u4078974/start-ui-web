@@ -66,6 +66,7 @@ export const FieldMultiSelect = <
                 onChange(options.map((option) => option.value))
               }
               {...props.selectProps}
+              className={`floating-label ${props.selectProps?.className ?? ''} ${value?.length ? 'enable-floating-label' : ''}`}
               {...field}
             />
             <FormFieldError />

@@ -44,6 +44,7 @@ export const FieldTextarea = <
             rows={props.rows}
             isDisabled={props.isDisabled}
             {...props.textareaProps}
+            className={`floating-label ${props.textareaProps?.className ?? ''} ${field.value ? 'enable-floating-label' : ''}`}
             {...field}
           />
           <FormFieldError />

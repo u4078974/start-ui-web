@@ -88,6 +88,7 @@ export const FieldCurrency = <
               fixedDecimals={props.fixedDecimals}
               isDisabled={props.isDisabled}
               {...props.inputCurrencyProps}
+              className={`floating-label ${props.inputCurrencyProps?.className ?? ''} ${field.value ? 'enable-floating-label' : ''}`}
               {...field}
               value={formatValue(field.value, 'from-cents')}
               onChange={(v) => field.onChange(formatValue(v, 'to-cents'))}

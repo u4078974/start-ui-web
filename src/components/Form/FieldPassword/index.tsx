@@ -50,6 +50,7 @@ export const FieldPassword = <
               placeholder={props.placeholder}
               autoFocus={props.autoFocus}
               {...props.inputProps}
+              className={`floating-label ${props.inputProps?.className ?? ''} ${field.value ? 'enable-floating-label' : ''}`}
               {...field}
             />
             <InputLeftElement>
