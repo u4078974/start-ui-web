@@ -90,6 +90,18 @@ export const AccountProfileForm = () => {
           <Form {...form} onSubmit={onSubmit}>
             <Stack spacing={4}>
               <FormField>
+                <FormFieldLabel>
+                  {t('account:data.avatar.label')}
+                </FormFieldLabel>
+                <FormFieldController
+                  name="image"
+                  type="upload"
+                  control={form.control}
+                  inputText={t('account:data.avatar.inputText')}
+                />
+              </FormField>
+
+              <FormField>
                 <FormFieldLabel>{t('account:data.name.label')}</FormFieldLabel>
                 <FormFieldController
                   control={form.control}

@@ -5,7 +5,7 @@ import { z } from 'zod';
 
 import { zFieldUploadValue } from '@/files/schemas';
 
-import { Form, FormField } from '../';
+import { Form, FormField, FormFieldController, FormFieldLabel } from '../';
 import { FieldUploadPreview } from './FieldUploadPreview';
 import { useFieldUploadFileFromUrl } from './utils';
 
@@ -35,7 +35,14 @@ export const Default = () => {
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
       <Stack spacing={4}>
-        <FormField type="upload" name="file" label="Name" />
+        <FormField>
+          <FormFieldLabel>Name</FormFieldLabel>
+          <FormFieldController
+            type="upload"
+            name="file"
+            control={form.control}
+          />
+        </FormField>
         <Box>
           <Button type="submit" variant="@primary">
             Submit
@@ -61,7 +68,14 @@ export const WithDefaultValue = () => {
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
       <Stack spacing={4}>
-        <FormField type="upload" name="file" label="Name" />
+        <FormField>
+          <FormFieldLabel>Name</FormFieldLabel>
+          <FormFieldController
+            type="upload"
+            name="file"
+            control={form.control}
+          />
+        </FormField>
         <Box>
           <Button type="submit" variant="@primary">
             Submit
@@ -87,7 +101,14 @@ export const WithPreview = () => {
   return (
     <Form {...form} onSubmit={(values) => console.log(values)}>
       <Stack spacing={4}>
-        <FormField type="upload" name="file" label="Name" />
+        <FormField>
+          <FormFieldLabel>Name</FormFieldLabel>
+          <FormFieldController
+            type="upload"
+            name="file"
+            control={form.control}
+          />
+        </FormField>
         <FieldUploadPreview uploaderName="file" />
         <Box>
           <Button type="submit" variant="@primary">

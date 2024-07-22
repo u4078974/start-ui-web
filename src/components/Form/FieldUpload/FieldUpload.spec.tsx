@@ -1,6 +1,8 @@
 import { expect, test, vi } from 'vitest';
 import { z } from 'zod';
 
+import { FormFieldController } from '@/components/Form/FormFieldController';
+import { FormFieldLabel } from '@/components/Form/FormFieldLabel';
 import { FieldUploadValue, zFieldUploadValue } from '@/files/schemas';
 import { render, screen, setupUser } from '@/tests/utils';
 
@@ -31,13 +33,15 @@ test('update value', async () => {
       onSubmit={mockedSubmit}
     >
       {({ form }) => (
-        <FormField
-          type="upload"
-          name="file"
-          label="File"
-          control={form.control}
-          inputText="Upload"
-        />
+        <FormField>
+          <FormFieldLabel>File</FormFieldLabel>
+          <FormFieldController
+            type="upload"
+            name="file"
+            control={form.control}
+            inputText="Upload"
+          />
+        </FormField>
       )}
     </FormMocked>
   );
@@ -64,12 +68,14 @@ test('default value', async () => {
       onSubmit={mockedSubmit}
     >
       {({ form }) => (
-        <FormField
-          type="upload"
-          name="file"
-          label="File"
-          control={form.control}
-        />
+        <FormField>
+          <FormFieldLabel>File</FormFieldLabel>
+          <FormFieldController
+            type="upload"
+            name="file"
+            control={form.control}
+          />
+        </FormField>
       )}
     </FormMocked>
   );

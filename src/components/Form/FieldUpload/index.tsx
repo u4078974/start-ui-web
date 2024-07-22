@@ -1,31 +1,22 @@
-import { ChangeEvent, ReactNode } from 'react';
+import { ChangeEvent } from 'react';
 
-import {
-  Icon,
-  Input,
-  type InputProps,
-  Spinner,
-  chakra,
-} from '@chakra-ui/react';
+import { Icon, Input, InputProps, Spinner, chakra } from '@chakra-ui/react';
 import { Controller, FieldPath, FieldValues } from 'react-hook-form';
 import { FiPaperclip } from 'react-icons/fi';
 
-import { FieldCommonProps } from '@/components/Form/FormField';
+import { FieldCommonProps } from '@/components/Form/FormFieldController';
 import { FormFieldError } from '@/components/Form/FormFieldError';
-import { FormFieldHelper } from '@/components/Form/FormFieldHelper';
-import { FormFieldItem } from '@/components/Form/FormFieldItem';
-import { FormFieldLabel } from '@/components/Form/FormFieldLabel';
+
+type InputRootProps = Pick<InputProps, 'placeholder' | 'size' | 'autoFocus'>;
 
 export type FieldUploadProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = {
   type: 'upload';
-  label?: ReactNode;
-  helper?: ReactNode;
   inputText?: string;
   isLoading?: boolean;
-} & Pick<InputProps, 'placeholder' | 'size' | 'autoFocus'> &
+} & InputRootProps &
   FieldCommonProps<TFieldValues, TName>;
 
 export const FieldUpload = <
@@ -61,8 +52,7 @@ export const FieldUpload = <
         const isFieldUploadDisabled = props.isDisabled || props.isLoading;
 
         return (
-          <FormFieldItem>
-            {!!props.label && <FormFieldLabel>{props.label}</FormFieldLabel>}
+          <>
             <Input
               as="label"
               position="relative"
@@ -89,11 +79,9 @@ export const FieldUpload = <
               )}
               {!props.isLoading && (!value ? props.inputText : value.name)}
             </Input>
-            {!!props.helper && (
-              <FormFieldHelper>{props.helper}</FormFieldHelper>
-            )}
+
             <FormFieldError />
-          </FormFieldItem>
+          </>
         );
       }}
     />

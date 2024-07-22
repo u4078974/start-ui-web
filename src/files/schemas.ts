@@ -17,13 +17,13 @@ export type FieldUploadValue = z.infer<ReturnType<typeof zFieldUploadValue>>;
 export const zFieldUploadValue = (acceptedTypes?: UploadFileType[]) =>
   z
     .object({
-      fileUrl: zu.string.nonEmptyOptional(z.string()),
+      fileUrl: zu.string.nonEmptyNullish(z.string()),
       file: z.instanceof(File).optional(),
       lastModified: z.number().optional(),
       lastModifiedDate: z.date().optional(),
-      name: zu.string.nonEmptyOptional(z.string()),
-      size: zu.string.nonEmptyOptional(z.string()),
-      type: zu.string.nonEmptyOptional(z.string()),
+      name: zu.string.nonEmptyNullish(z.string()),
+      size: zu.string.nonEmptyNullish(z.string()),
+      type: zu.string.nonEmptyNullish(z.string()),
     })
     .refine(
       (file) => {
