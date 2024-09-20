@@ -26,7 +26,7 @@ const formOptions = {
   mode: 'onBlur',
   resolver: zodResolver(zFormSchema()),
   defaultValues: {
-    name: 'chocolat',
+    name: '',
   },
 } as const;
 
@@ -43,7 +43,6 @@ export const Default = () => {
             control={form.control}
             name="name"
             placeholder="Buzz Pawdrin"
-            variant="resettable"
           />
           <FormFieldHelper>Help</FormFieldHelper>
         </FormField>
@@ -162,6 +161,38 @@ export const ChakraProps = () => {
           <FormFieldHelper>Help</FormFieldHelper>
         </FormField>
 
+        <Box>
+          <Button type="submit" variant="@primary">
+            Submit
+          </Button>
+        </Box>
+      </Stack>
+    </Form>
+  );
+};
+
+export const ResettableField = () => {
+  const form = useForm<FormSchema>({
+    ...formOptions,
+    defaultValues: {
+      name: 'Chocolat',
+    },
+  });
+
+  return (
+    <Form {...form} onSubmit={(values) => console.log(values)}>
+      <Stack spacing={4}>
+        <FormField>
+          <FormFieldLabel>Names</FormFieldLabel>
+          <FormFieldController
+            type="text"
+            control={form.control}
+            name="name"
+            placeholder="Buzz Pawdrin"
+            variant="resettable"
+          />
+          <FormFieldHelper>Help</FormFieldHelper>
+        </FormField>
         <Box>
           <Button type="submit" variant="@primary">
             Submit
