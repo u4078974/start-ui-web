@@ -26,7 +26,7 @@ const formOptions = {
   mode: 'onBlur',
   resolver: zodResolver(zFormSchema()),
   defaultValues: {
-    name: '',
+    name: 'chocolat',
   },
 } as const;
 
@@ -37,12 +37,13 @@ export const Default = () => {
     <Form {...form} onSubmit={(values) => console.log(values)}>
       <Stack spacing={4}>
         <FormField>
-          <FormFieldLabel>Name</FormFieldLabel>
+          <FormFieldLabel>Names</FormFieldLabel>
           <FormFieldController
             type="text"
             control={form.control}
             name="name"
             placeholder="Buzz Pawdrin"
+            variant="resettable"
           />
           <FormFieldHelper>Help</FormFieldHelper>
         </FormField>

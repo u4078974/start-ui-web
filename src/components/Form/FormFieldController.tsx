@@ -44,7 +44,9 @@ export type FieldCommonProps<
 export type FormFieldControllerProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-> =
+> = {
+  variant?: 'resettable';
+} & (
   | FieldCustomProps<TFieldValues, TName>
   // -- ADD NEW FIELD PROPS TYPE HERE --
   | FieldCheckboxProps<TFieldValues, TName>
@@ -58,7 +60,8 @@ export type FormFieldControllerProps<
   | FieldNumberProps<TFieldValues, TName>
   | FieldPasswordProps<TFieldValues, TName>
   | FieldCheckboxesProps<TFieldValues, TName>
-  | FieldRadiosProps<TFieldValues, TName>;
+  | FieldRadiosProps<TFieldValues, TName>
+);
 
 export const FormFieldController = <
   TFieldValues extends FieldValues = FieldValues,
@@ -67,12 +70,13 @@ export const FormFieldController = <
   _props: FormFieldControllerProps<TFieldValues, TName>
 ) => {
   const { size } = useFormField();
+  const { variant, ...otherProps } = _props;
 
   const props = {
-    ..._props,
+    ...otherProps,
     size: 'size' in _props ? _props.size ?? size : size,
   };
-
+  const isResettable = variant === 'resettable';
   const getField = () => {
     switch (props.type) {
       case 'custom':
@@ -81,7 +85,7 @@ export const FormFieldController = <
       case 'text':
       case 'email':
       case 'tel':
-        return <FieldText {...props} />;
+        return <FieldText isResettable={isResettable} {...props} />;
 
       case 'password':
         return <FieldPassword {...props} />;
