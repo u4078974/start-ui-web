@@ -66,6 +66,7 @@
     "@trpc/server": "10.45.2",
     "bcrypt": "5.1.1",
     "chakra-react-select": "4.9.1",
+    "cmdk": "1.0.0",
     "colorette": "2.0.20",
     "dayjs": "1.11.11",
     "framer-motion": "11.2.14",
@@ -99,7 +100,7 @@
     "ts-pattern": "5.2.0",
     "zod": "3.23.8",
     "zod-i18n-map": "2.27.0",
-    "zustand": "4.5.4"
+    "zustand": "5.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.24.7",
