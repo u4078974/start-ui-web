@@ -4,7 +4,7 @@ import { render } from '@react-email/render';
 import nodemailer from 'nodemailer';
 import { MailOptions } from 'nodemailer/lib/sendmail-transport';
 
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 import { DEFAULT_LANGUAGE_KEY } from '@/lib/i18n/constants';
 
 const transport = nodemailer.createTransport(env.EMAIL_SERVER);

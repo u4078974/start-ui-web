@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 import { keys } from 'remeda';
 import { z } from 'zod';
 
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 import { zUserAccount } from '@/features/account/schemas';
 import { OAUTH_PROVIDERS, zOAuthProvider } from '@/features/auth/oauth-config';
 import { DEFAULT_LANGUAGE_KEY } from '@/lib/i18n/constants';

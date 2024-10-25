@@ -3,7 +3,7 @@ import pino from 'pino';
 import pretty from 'pino-pretty';
 import { z } from 'zod';
 
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 
 const options: pino.LoggerOptions = { level: env.LOGGER_LEVEL };
 

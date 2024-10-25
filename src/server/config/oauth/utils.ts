@@ -1,4 +1,4 @@
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 import { OAuthProvider } from '@/features/auth/oauth-config';
 import { AppContext } from '@/server/config/trpc';
 

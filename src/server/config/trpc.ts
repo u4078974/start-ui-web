@@ -15,7 +15,7 @@ import superjson from 'superjson';
 import { OpenApiMeta } from 'trpc-openapi';
 import { ZodError } from 'zod';
 
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 import { UserAuthorization } from '@/features/users/schemas';
 import { getServerAuthSession } from '@/server/config/auth';
 import { db } from '@/server/config/db';

@@ -9,7 +9,7 @@ import {
 import { Footer } from '@/emails/components/Footer';
 import { Layout } from '@/emails/components/Layout';
 import { styles } from '@/emails/styles';
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 import i18n from '@/lib/i18n/server';
 
 type EmailLoginNotFoundProps = {

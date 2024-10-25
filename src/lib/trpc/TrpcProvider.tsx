@@ -8,7 +8,7 @@ import {
 import { TRPCClientError, httpBatchLink, loggerLink } from '@trpc/client';
 import superjson from 'superjson';
 
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 
 import { trpc } from './client';
 

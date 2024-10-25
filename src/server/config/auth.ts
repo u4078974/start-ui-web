@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import { cookies, headers } from 'next/headers';
 import { generateRandomString } from 'oslo/crypto';
 
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 import {
   VALIDATION_CODE_ALLOWED_CHARACTERS,
   VALIDATION_CODE_MOCKED,

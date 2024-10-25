@@ -2,7 +2,7 @@ import { TRPCError } from '@trpc/server';
 import { Google } from 'arctic';
 import { z } from 'zod';
 
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 import { OAuthClient, getOAuthCallbackUrl } from '@/server/config/oauth/utils';
 
 const zGoogleUser = () =>

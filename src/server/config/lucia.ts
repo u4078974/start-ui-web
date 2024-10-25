@@ -1,7 +1,7 @@
 import { PrismaAdapter } from '@lucia-auth/adapter-prisma';
 import { Lucia, TimeSpan } from 'lucia';
 
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 import { UserAccount } from '@/features/account/schemas';
 import { UserAccountStatus } from '@/features/users/schemas';
 

@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { pageUtils } from 'e2e/utils/pageUtils';
 import { USER_EMAIL } from 'e2e/utils/users';
 
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 import { ROUTES_APP } from '@/features/app/routes';
 
 test.describe('App access', () => {
