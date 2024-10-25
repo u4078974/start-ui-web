@@ -22,9 +22,9 @@ import { lucia } from './lucia';
  */
 export const getServerAuthSession = cache(async () => {
   const sessionId =
-    headers().get('Authorization')?.split('Bearer ')[1] ??
+    (await headers()).get('Authorization')?.split('Bearer ')[1] ??
     // Get Session from cookies
-    cookies().get(lucia.sessionCookieName)?.value;
+    (await cookies()).get(lucia.sessionCookieName)?.value;
 
   if (!sessionId)
     return {
@@ -43,7 +43,7 @@ export const getServerAuthSession = cache(async () => {
   try {
     if (session?.fresh) {
       const sessionCookie = lucia.createSessionCookie(session.id);
-      cookies().set(
+      (await cookies()).set(
         sessionCookie.name,
         sessionCookie.value,
         sessionCookie.attributes
@@ -52,7 +52,7 @@ export const getServerAuthSession = cache(async () => {
 
     if (!session) {
       const sessionCookie = lucia.createBlankSessionCookie();
-      cookies().set(
+      (await cookies()).set(
         sessionCookie.name,
         sessionCookie.value,
         sessionCookie.attributes
@@ -187,7 +187,7 @@ export async function createSession(userId: string) {
 
   const sessionCookie = lucia.createSessionCookie(session.id);
 
-  cookies().set(
+  (await cookies()).set(
     sessionCookie.name,
     sessionCookie.value,
     sessionCookie.attributes
@@ -201,7 +201,7 @@ export async function deleteSession(sessionId: string) {
 
   const sessionCookie = lucia.createBlankSessionCookie();
 
-  cookies().set(
+  (await cookies()).set(
     sessionCookie.name,
     sessionCookie.value,
     sessionCookie.attributes

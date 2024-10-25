@@ -37,19 +37,23 @@ export const oauthRouter = createTRPCRouter({
         codeVerifier
       );
 
-      cookies().set(`${input.provider}_oauth_state`, state, {
+      (await cookies()).set(`${input.provider}_oauth_state`, state, {
         httpOnly: true,
         secure: env.NODE_ENV === 'production',
         maxAge: 60 * 10, // 10 minutes
         path: '/',
       });
 
-      cookies().set(`${input.provider}_oauth_codeVerifier`, codeVerifier, {
-        httpOnly: true,
-        secure: env.NODE_ENV === 'production',
-        maxAge: 60 * 10, // 10 minutes
-        path: '/',
-      });
+      (await cookies()).set(
+        `${input.provider}_oauth_codeVerifier`,
+        codeVerifier,
+        {
+          httpOnly: true,
+          secure: env.NODE_ENV === 'production',
+          maxAge: 60 * 10, // 10 minutes
+          path: '/',
+        }
+      );
 
       return {
         url: url.toString(),
@@ -76,12 +80,14 @@ export const oauthRouter = createTRPCRouter({
 
       const stateFromCookie = z
         .string()
-        .safeParse(cookies().get(`${input.provider}_oauth_state`)?.value);
+        .safeParse(
+          (await cookies()).get(`${input.provider}_oauth_state`)?.value
+        );
 
       const codeVerifierFromCookie = z
         .string()
         .safeParse(
-          cookies().get(`${input.provider}_oauth_codeVerifier`)?.value
+          (await cookies()).get(`${input.provider}_oauth_codeVerifier`)?.value
         );
 
       if (!stateFromCookie.success || stateFromCookie.data !== input.state) {

@@ -11,7 +11,7 @@
     "preinstall": "npx only-allow pnpm",
     "postinstall": "prisma generate && pnpm build:info && pnpm theme:generate-typing",
     "dev": "run-p dev:*",
-    "dev:next": "next dev",
+    "dev:next": "next dev --turbo",
     "dev:email": "maildev -outgoing-host smtp.example.com --outgoing-secure --outgoing-user 'username' --outgoing-pass 'password'",
     "build": "pnpm build:info && next build",
     "build:info": "tsx scripts/build-info.ts",
@@ -74,16 +74,16 @@
     "i18next": "23.11.5",
     "i18next-browser-languagedetector": "8.0.0",
     "lucia": "3.2.0",
-    "next": "14.2.4",
+    "next": "15.0.1",
     "nodemailer": "6.9.14",
     "nuqs": "1.17.4",
     "oslo": "1.2.1",
     "pino": "9.2.0",
     "pino-pretty": "11.2.1",
-    "react": "18.3.1",
+    "react": "19.0.0-rc-69d4b800-20241021",
     "react-custom-scrollbars-2": "4.5.0",
     "react-day-picker": "8.10.1",
-    "react-dom": "18.3.1",
+    "react-dom": "19.0.0-rc-69d4b800-20241021",
     "react-error-boundary": "4.0.13",
     "react-focus-lock": "2.12.1",
     "react-hook-form": "7.52.1",
@@ -108,7 +108,7 @@
     "@babel/eslint-parser": "7.24.7",
     "@babel/parser": "7.24.7",
     "@chakra-ui/cli": "2.4.1",
-    "@next/eslint-plugin-next": "14.2.4",
+    "@next/eslint-plugin-next": "15.0.1",
     "@playwright/test": "1.45.1",
     "@storybook/addon-actions": "8.1.11",
     "@storybook/addon-essentials": "8.1.11",
@@ -125,8 +125,8 @@
     "@types/jsonwebtoken": "9.0.6",
     "@types/node": "20.14.10",
     "@types/nodemailer": "6.4.15",
-    "@types/react": "18.3.3",
-    "@types/react-dom": "18.3.0",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
     "@typescript-eslint/eslint-plugin": "8.8.0",
     "@vitejs/plugin-react": "4.3.1",
     "@vitest/ui": "2.0.1",
@@ -136,7 +136,7 @@
     "dotenv-cli": "7.4.2",
     "encoding": "0.1.13",
     "eslint": "8.57.0",
-    "eslint-config-next": "14.2.4",
+    "eslint-config-next": "15.0.1",
     "eslint-plugin-sonarjs": "0.25.1",
     "eslint-plugin-storybook": "0.8.0",
     "husky": "9.0.11",
@@ -175,5 +175,11 @@
   "bugs": {
     "url": "https://github.com/bearstudio/start-ui-web/issues"
   },
-  "homepage": "https://github.com/bearstudio/start-ui-web#readme"
+  "homepage": "https://github.com/bearstudio/start-ui-web#readme",
+  "pnpm": {
+    "overrides": {
+      "@types/react": "npm:types-react@19.0.0-rc.1",
+      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
+    }
+  }
 }
