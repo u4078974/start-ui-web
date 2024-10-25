@@ -21,7 +21,7 @@ const networkMode =
   env.NEXT_PUBLIC_NODE_ENV !== 'production' ? 'always' : undefined;
 
 export function TrpcProvider(props: { children: React.ReactNode }) {
-  const [showDemo, setShowDemo] = useState(false);
+  const [, setShowDemo] = useState(false);
 
   const [queryClient] = useState(
     () =>
